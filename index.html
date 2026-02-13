@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expressões do Edu Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-600 via-indigo-700 to-blue-800 flex items-center justify-center p-4">
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl p-10 max-w-lg w-full text-center border border-white/20">
+    <h1 class="text-4xl font-extrabold text-white mb-2">Expressões do Edu</h1>
+    <p class="text-indigo-200 mb-8 text-lg">Generator</p>
+
+    <div id="result" class="min-h-[120px] flex items-center justify-center mb-8 px-4">
+      <p id="phrase" class="text-2xl font-semibold text-white italic transition-all duration-300">
+        Clique no botão para gerar!
+      </p>
+    </div>
+
+    <button
+      id="btn"
+      onclick="generate()"
+      class="bg-white text-indigo-700 font-bold text-lg px-8 py-4 rounded-full shadow-lg hover:scale-105 hover:shadow-xl active:scale-95 transition-all duration-200 cursor-pointer"
+    >
+      Gerar Expressão
+    </button>
+  </div>
+
+  <script>
+    const phrases = [
+      "Nove grávidas não fazem um bebê em um mês.... mas deveriam",
+      "Agora o café vai coar",
+      "Que macarrão",
+      "Agoora o café vai coar memo!",
+    ];
+
+    let lastIndex = -1;
+
+    function generate() {
+      let index;
+      do {
+        index = Math.floor(Math.random() * phrases.length);
+      } while (index === lastIndex && phrases.length > 1);
+      lastIndex = index;
+
+      const el = document.getElementById("phrase");
+      el.classList.add("opacity-0", "scale-95");
+
+      setTimeout(() => {
+        el.textContent = `"${phrases[index]}"`;
+        el.classList.remove("opacity-0", "scale-95");
+      }, 150);
+    }
+  </script>
+</body>
+</html>
